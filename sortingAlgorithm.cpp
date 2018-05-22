@@ -74,7 +74,63 @@ void mergeSortMerge(vector<double> &A, int p, int q, int r)
     }
 }
 
+void exchange(vector<double> &A, int ii, int jj)
+{
+    double temp = A[ii];
+    A[ii] = A[jj];
+    A[jj] = temp;
+}
+
 void bubbleSort(vector<double> &A)
 {
+    auto length = A.size();
+    for(unsigned ii = 0;ii<length-1;ii++)
+    {
+        for(unsigned jj = ii+1;jj<length;jj++)
+        {
+            if(A[ii]>A[jj])
+                exchange(A,ii,jj);
+        }
+    }
+}
+
+void maxHeapify(vector<double> &A, unsigned ii, unsigned heapSize)
+{
+    unsigned l = leftSon(ii+1)-1;
+    unsigned r = rightSon(ii+1)-1;
+    //auto length = A.size();
+    double largest = 0;
+    if (l<heapSize&&A[l]>A[ii])
+        largest = l;
+    else
+        largest = ii;
+    if(r<heapSize&&A[r]>A[largest])
+        largest = r;
+    if(largest!=ii)
+    {
+        exchange(A,ii,largest);
+        maxHeapify(A,largest,heapSize);
+    }
+}
+
+void buildMaxHeap(vector<double> &A)
+{
+    auto length = A.size();
+    unsigned leafNum = length>>1;
+    for(int ii = leafNum;ii>=0;ii--)
+        maxHeapify(A, ii,length);
+}
+
+void heapSort(vector<double> &A)
+{
+    buildMaxHeap(A);
+    auto length = A.size();
+    unsigned heapSize = length;
+    for(unsigned ii = length-1;ii>=1;ii--)
+    {
+        exchange(A,0,heapSize-1);
+        heapSize--;
+        maxHeapify(A,0,heapSize);
+    }
 
 }
