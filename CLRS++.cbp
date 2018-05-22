@@ -33,6 +33,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="sortingAlgorithm.cpp" />
+		<Unit filename="sortingAlgorithm.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
