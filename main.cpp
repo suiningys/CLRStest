@@ -53,8 +53,17 @@ void testHeapSort()
     cout<<endl;
 }
 
+void testQuickSort()
+{
+    vector<double> A{10,0,12,5,7,6.5,-11};
+    quickSort(A);
+    for(auto item:A)
+        cout<< item<<" ";
+    cout<<endl;
+}
+
 int main()
 {
-    testHeapSort();
+    testQuickSort();
     return 0;
 }

@@ -1,5 +1,6 @@
 #include<vector>
 #include<iostream>
+#include<random>
 #include "sortingAlgorithm.h"
 using std::vector;
 using std::cout;
@@ -133,4 +134,40 @@ void heapSort(vector<double> &A)
         maxHeapify(A,0,heapSize);
     }
 
+}
+
+unsigned quickPartition(vector<double> &A, unsigned p, unsigned r)
+{
+    //default_random_engine e;
+    //uniform_int_distribution<unsigned> u(p,r);
+    //unsigned q = u(e);
+    //exchange(A,q,r);
+    double x = A[r];
+    int ii = p -1;
+    for(unsigned jj=p;jj<=r-1;jj++)
+    {
+        if(A[jj]<x)
+        {
+            ii++;
+            exchange(A,ii,jj);
+        }
+    }
+    exchange(A,ii+1,r);
+    return ii+1;
+}
+
+void quickSortCore(vector<double> &A, int p, int r)
+{
+    if(p<r)
+    {
+        unsigned q = quickPartition(A,p,r);
+        quickSortCore(A,p,q-1);
+        quickSortCore(A,q+1,r);
+    }
+}
+
+void quickSort(vector<double> &A)
+{
+    auto length = A.size();
+    quickSortCore(A,0,length-1);
 }

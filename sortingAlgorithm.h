@@ -29,4 +29,10 @@ void maxHeapify(vector<double> &A, unsigned ii, unsigned heapSize);
 void buildMaxHeap(vector<double> &A);
 
 void heapSort(vector<double> &A);
+
+unsigned quickPartition(vector<double> &A, unsigned p, unsigned r);
+
+void quickSortCore(vector<double> &A, int p, int r);
+
+void quickSort(vector<double> &A);
 #endif // SORTINGALGORITHM_H_INCLUDED
