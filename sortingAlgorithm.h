@@ -1,10 +1,12 @@
 #ifndef SORTINGALGORITHM_H_INCLUDED
 #define SORTINGALGORITHM_H_INCLUDED
 #include<vector>
+#include<random>
 
 #define parent(ii) ((ii)>>1)
 #define leftSon(ii) ((ii)<<1)
 #define rightSon(ii) (((ii)<<1) + 1)
+#define random(a,b) (rand()%((b)-(a)+1)+(a))
 
 using std::vector;
 using std::cout;
@@ -35,4 +37,8 @@ unsigned quickPartition(vector<double> &A, unsigned p, unsigned r);
 void quickSortCore(vector<double> &A, int p, int r);
 
 void quickSort(vector<double> &A);
+
+void countingSort(vector<unsigned> &A);
+
+void countingSortCore(vector<unsigned> &A, vector<unsigned> &B, unsigned k);
 #endif // SORTINGALGORITHM_H_INCLUDED

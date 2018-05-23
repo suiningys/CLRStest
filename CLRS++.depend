@@ -1,15 +1,17 @@
 # depslib dependency file v1.0
-1526999343 source:g:\myrepostory\clrsc++\clrsc++\clrs++\main.cpp
+1527072396 source:g:\myrepostory\clrsc++\clrsc++\clrs++\main.cpp
 	<iostream>
 	<vector>
 	"sortingAlgorithm.h"
 
-1526999511 g:\myrepostory\clrsc++\clrsc++\clrs++\sortingalgorithm.h
+1527072812 g:\myrepostory\clrsc++\clrsc++\clrs++\sortingalgorithm.h
 	<vector>
+	<random>
 
-1526999513 source:g:\myrepostory\clrsc++\clrsc++\clrs++\sortingalgorithm.cpp
+1527072822 source:g:\myrepostory\clrsc++\clrsc++\clrs++\sortingalgorithm.cpp
 	<vector>
 	<iostream>
 	<random>
+	<cstdlib>
 	"sortingAlgorithm.h"
 

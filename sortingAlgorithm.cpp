@@ -1,6 +1,7 @@
 #include<vector>
 #include<iostream>
 #include<random>
+#include<cstdlib>
 #include "sortingAlgorithm.h"
 using std::vector;
 using std::cout;
@@ -140,8 +141,8 @@ unsigned quickPartition(vector<double> &A, unsigned p, unsigned r)
 {
     //default_random_engine e;
     //uniform_int_distribution<unsigned> u(p,r);
-    //unsigned q = u(e);
-    //exchange(A,q,r);
+    unsigned q = random(p,r);
+    exchange(A,q,r);
     double x = A[r];
     int ii = p -1;
     for(unsigned jj=p;jj<=r-1;jj++)
@@ -155,12 +156,15 @@ unsigned quickPartition(vector<double> &A, unsigned p, unsigned r)
     exchange(A,ii+1,r);
     return ii+1;
 }
-
+/*
+ * p and r are int type because p and r can be negative in forth line
+ * warning: q-1 can be negative
+ */
 void quickSortCore(vector<double> &A, int p, int r)
 {
     if(p<r)
     {
-        unsigned q = quickPartition(A,p,r);
+        int q = quickPartition(A,p,r);
         quickSortCore(A,p,q-1);
         quickSortCore(A,q+1,r);
     }
@@ -170,4 +174,33 @@ void quickSort(vector<double> &A)
 {
     auto length = A.size();
     quickSortCore(A,0,length-1);
+}
+
+void countingSort(vector<unsigned> &A)
+{
+    vector<unsigned> B(A);
+    unsigned maxNum = 0;
+    vector<unsigned>::iterator it;
+    for(it = A.begin();it!=A.end();it++)
+    {
+        if(*it>maxNum)
+            maxNum = *it;
+    }
+    countingSortCore(A,B,maxNum);
+    A.swap(B);
+}
+
+void countingSortCore(vector<unsigned> &A, vector<unsigned> &B, unsigned k)
+{
+    auto length = A.size();
+    vector<unsigned> C(k+1,0);
+    for(unsigned ii = 0;ii<length;ii++)
+        C[A[ii]]++;
+    for(unsigned ii=1;ii<=k;ii++)
+        C[ii] +=C[ii-1];
+    for(int jj = length-1;jj>=0;jj--)
+    {
+        B[C[A[jj]]] = A[jj];
+        C[A[jj]]--;
+    }
 }
