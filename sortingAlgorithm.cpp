@@ -2,6 +2,7 @@
 #include<iostream>
 #include<random>
 #include<cstdlib>
+#include<cmath>
 #include "sortingAlgorithm.h"
 using std::vector;
 using std::cout;
@@ -17,6 +18,8 @@ void printVector(vector<double> A)
 void inserSort(vector<double> &A)
 {
     auto length = A.size();
+    if(length==0)
+        return;
     for(decltype(length) jj = 1;jj!=length;jj++)
     {
         double key = A[jj];
@@ -28,12 +31,13 @@ void inserSort(vector<double> &A)
         }
         A[ii+1] = key;
     }
-    printVector(A);
 }
 
 void mergeSort(vector<double> &A)
 {
     auto length = A.size();
+    if(length==0)
+        return;
     mergeSortSort(A,0,length-1);
 }
 
@@ -86,6 +90,8 @@ void exchange(vector<double> &A, int ii, int jj)
 void bubbleSort(vector<double> &A)
 {
     auto length = A.size();
+    if(length==0)
+        return;
     for(unsigned ii = 0;ii<length-1;ii++)
     {
         for(unsigned jj = ii+1;jj<length;jj++)
@@ -125,8 +131,10 @@ void buildMaxHeap(vector<double> &A)
 
 void heapSort(vector<double> &A)
 {
-    buildMaxHeap(A);
     auto length = A.size();
+    if(length==0)
+        return;
+    buildMaxHeap(A);
     unsigned heapSize = length;
     for(unsigned ii = length-1;ii>=1;ii--)
     {
@@ -173,6 +181,8 @@ void quickSortCore(vector<double> &A, int p, int r)
 void quickSort(vector<double> &A)
 {
     auto length = A.size();
+    if(length==0)
+        return;
     quickSortCore(A,0,length-1);
 }
 
@@ -203,4 +213,26 @@ void countingSortCore(vector<unsigned> &A, vector<unsigned> &B, unsigned k)
         B[C[A[jj]]] = A[jj];
         C[A[jj]]--;
     }
+}
+
+void bucketSort(vector<double> &A)
+{
+    auto length = A.size();
+    if(length==0)
+        return;
+
+    vector<double> C;
+    vector<vector<double>> B(length,vector<double>());
+
+    for(unsigned ii =0;ii<length;ii++)
+    {
+        B[floor(length*A[ii])].push_back(A[ii]);
+    }
+    for(unsigned ii=0;ii<length;ii++)
+    {
+        inserSort(B[ii]);
+        C.insert(C.end(),B[ii].begin(),B[ii].end());
+    }
+    A.swap(C);
+
 }

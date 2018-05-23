@@ -41,4 +41,6 @@ void quickSort(vector<double> &A);
 void countingSort(vector<unsigned> &A);
 
 void countingSortCore(vector<unsigned> &A, vector<unsigned> &B, unsigned k);
+
+void bucketSort(vector<double> &A);
 #endif // SORTINGALGORITHM_H_INCLUDED
