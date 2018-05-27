@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include "sortingAlgorithm.h"
+#include "orderStatistic.h"
+#include "dataStructure.h"
 using namespace std;
 
 void testInsertSort()
@@ -84,10 +86,25 @@ void testCase()
     for(auto item:E)
         cout<< item<<" ";
     cout<<endl;
+    double bigger,smaller;
+    maxMinFounder(A,smaller,bigger);
+    cout<<smaller<<" "<<bigger<<endl;
+    double res;
+    res = selectRandom(E,0,A.size()-1,3);
+    cout<<res<<endl;
 }
+
+void testMyList()
+{
+    myList * mylist = new myList;
+    for(double ii = 0;ii<10;ii++)
+        insertNode(mylist, ii);
+    printList(mylist);
+}
+
 
 int main()
 {
-    testCase();
+    testMyList();
     return 0;
 }
