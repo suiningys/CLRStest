@@ -97,14 +97,39 @@ void testCase()
 void testMyList()
 {
     myList * mylist = new myList;
-    for(double ii = 0;ii<10;ii++)
+    for(double ii = 0;ii<1000;ii++)
         insertNode(mylist, ii);
+    printList(mylist);
+    listNode * nodeTemp = searchList(mylist,5);
+    cout<<nodeTemp->index<<endl;
+    for(double ii = 0;ii<500;ii++)
+        deleteNode(mylist,ii);
     printList(mylist);
 }
 
+void testBinarySearchTree()
+{
+    vector<double> A{6,18,3,7,2,4,13,9,17,20};
+    binaryTree * myTree = creatTree(15);
+    for(auto num:A)
+    {
+        binaryTreeNode * nodeTemp = creatTreeNode(num);
+        insertTree(myTree,nodeTemp);
+    }
+    inorderTreeWalk(myTree->root);
+    cout<<endl;
+    binaryTreeNode * testSuccessorNode = myTree->root->left->right->right;
+    cout<<testSuccessorNode->index<<endl;
+    binaryTreeNode * nodeTemp = treeSuccessor(testSuccessorNode);
+    cout<<nodeTemp->index<<endl;
+    binaryTreeNode * testPrecessorNode = myTree->root->right->left;
+    cout<<testPrecessorNode->index<<endl;
+    nodeTemp = treePredecessor(testPrecessorNode);
+    cout<<nodeTemp->index<<endl;
+}
 
 int main()
 {
-    testMyList();
+    testBinarySearchTree();
     return 0;
 }
