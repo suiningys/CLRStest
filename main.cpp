@@ -1,8 +1,9 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include "sortingAlgorithm.h"
 #include "orderStatistic.h"
 #include "dataStructure.h"
+#include "dynamicProgranmming.h"
 using namespace std;
 
 void testInsertSort()
@@ -128,8 +129,16 @@ void testBinarySearchTree()
     cout<<nodeTemp->index<<endl;
 }
 
+void testCutRod()
+{
+    vector<int> p{1,5,8,9,10,17,17,20,24,30};
+    int n = 10;
+    cout<<cutRod(p,n)<<endl;
+}
+
 int main()
 {
-    testBinarySearchTree();
+    testCutRod();
+    //cout<<"汉语"<<endl;
     return 0;
 }
